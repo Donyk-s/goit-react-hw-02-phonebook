@@ -1,35 +1,66 @@
+// App.js
 import React, { Component } from 'react';
 import Form from './phoneBoock/Forma';
 import ContactList from './contacklisst/Contactlist';
 import { nanoid } from 'nanoid';
+import Filter from './filter/Filter';
 
 export class App extends Component {
   state = {
-    contacts: [],
-    name: '',
-    number: '', // додайте стан для number
+    contacts: [
+      { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
+      { id: nanoid(), name: 'Hermione Kline', number: '443-89-12' },
+      { id: nanoid(), name: 'Eden Clements', number: '645-17-79' },
+      { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
   };
 
-  handleNumberChange = event => {
-    this.setState({ number: event.target.value });
-  }; // додайте обробник події для введення номеру
+  handleFilterChange = value => {
+    this.setState({ filter: value });
+  };
+
+  checkContactExists = name => {
+    return this.state.contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+  };
 
   formSubmitHandler = data => {
+    const { contacts } = this.state;
+    const isContactExists = contacts.some(
+      contact => contact.name.toLowerCase() === data.name.toLowerCase()
+    );
+
+    if (isContactExists) {
+      alert(`${data.name} is already in contacts.`);
+      return;
+    }
+
     const newContact = {
       id: nanoid(),
       name: data.name,
       number: data.number,
     };
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
       name: '',
       number: '',
     }));
   };
+  handleDeleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
+  };
 
   render() {
-    const { contacts, number } = this.state; // отримайте значення number зі стану компонента
+    const { contacts, filter } = this.state;
 
+    const filteredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
     return (
       <div
         style={{
@@ -44,9 +75,14 @@ export class App extends Component {
         <Form
           onSubmit={this.formSubmitHandler}
           onNumberChange={this.handleNumberChange}
-          number={number} // передайте значення поля вводу номеру як пропс
+          number={this.state.number}
         />
-        <ContactList contacts={contacts} />
+        <ContactList
+          contacts={filteredContacts}
+          onDeleteContact={this.handleDeleteContact}
+        />
+
+        <Filter filter={filter} onChangeInput={this.handleFilterChange} />
       </div>
     );
   }
