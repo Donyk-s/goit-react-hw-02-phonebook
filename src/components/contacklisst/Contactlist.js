@@ -1,5 +1,15 @@
 import React from 'react';
-const Contact = ({ wewe }) => {
-  return <div></div>;
+
+const ContactList = ({ contacts }) => {
+  return (
+    <ul>
+      {contacts.map(contact => (
+        <li key={contact.id}>
+          {contact.name} - {contact.number}
+        </li>
+      ))}
+    </ul>
+  );
 };
-export default Contact;
+
+export default ContactList;
