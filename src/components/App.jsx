@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from './phoneBoock/Forma';
+import Contact from './contacklisst/Contactlist';
 export class App extends Component {
   state = {
     contacts: [],
@@ -21,6 +22,7 @@ export class App extends Component {
         }}
       >
         <Form onSubmit={this.formSubmitHandler} />
+        <Contact />
       </div>
     );
   }
