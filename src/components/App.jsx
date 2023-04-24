@@ -1,11 +1,23 @@
-// App.js
 import React, { Component } from 'react';
 import Form from './phoneBoock/Forma';
 import ContactList from './contacklisst/Contactlist';
 import { nanoid } from 'nanoid';
 import Filter from './filter/Filter';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
+  static propTypes = {
+    // оголошення типів для пропсів компонента App
+    contacts: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    filter: PropTypes.string.isRequired,
+  };
+
   state = {
     contacts: [
       { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
@@ -66,6 +78,7 @@ export class App extends Component {
         style={{
           height: '100vh',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 40,
@@ -81,7 +94,6 @@ export class App extends Component {
           contacts={filteredContacts}
           onDeleteContact={this.handleDeleteContact}
         />
-
         <Filter filter={filter} onChangeInput={this.handleFilterChange} />
       </div>
     );

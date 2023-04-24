@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from './Filter. module.css';
+import css from './FilterStyle.module.css';
 
 const Filter = ({ filter, onChangeInput }) => {
   const handleFilterChange = event => {
@@ -9,7 +9,7 @@ const Filter = ({ filter, onChangeInput }) => {
 
   return (
     <>
-      <label>
+      <label className={css.labelInput}>
         Find contacts by name
         <br />
         <input
