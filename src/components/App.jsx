@@ -3,21 +3,8 @@ import Form from './phoneBoock/Forma';
 import ContactList from './contacklisst/Contactlist';
 import { nanoid } from 'nanoid';
 import Filter from './filter/Filter';
-import PropTypes from 'prop-types';
 
 export class App extends Component {
-  static propTypes = {
-    // оголошення типів для пропсів компонента App
-    contacts: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    filter: PropTypes.string.isRequired,
-  };
-
   state = {
     contacts: [
       { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
@@ -57,8 +44,6 @@ export class App extends Component {
 
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
-      name: '',
-      number: '',
     }));
   };
   handleDeleteContact = id => {
@@ -87,8 +72,7 @@ export class App extends Component {
       >
         <Form
           onSubmit={this.formSubmitHandler}
-          onNumberChange={this.handleNumberChange}
-          number={this.state.number}
+          contacts={this.state.contacts}
         />
         <ContactList
           contacts={filteredContacts}

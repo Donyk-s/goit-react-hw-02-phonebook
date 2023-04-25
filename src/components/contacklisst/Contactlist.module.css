@@ -3,7 +3,17 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  overflow-y: scroll;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
 }
+
+.emptyList {
+  height: auto;
+  overflow-y: hidden;
+}
+
 .myButton {
   box-shadow: 3px 4px 0px 0px #3dc21b;
   background: linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
