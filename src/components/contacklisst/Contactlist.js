@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import css from './Contactlist.module.css';
 
 const ContactList = ({ contacts, onDeleteContact }) => (
-  // додаемо перевірку наскільки в нас наповнений список контактів
-  // та дадаємо клас emptyList якщо список путий то скрол приховуємо
+  // we add a check to see how full our contact list is
+  // and add the emptyList class, if the list is empty, then we hide the scroll
   <ul className={`${css.contList} ${contacts.length ? '' : css.emptyList}`}>
     {contacts.map(contact => (
       <li key={contact.id} className={css.listItem}>

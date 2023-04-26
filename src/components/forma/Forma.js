@@ -14,7 +14,7 @@ class Form extends Component {
       })
     ).isRequired,
   };
-  state = { contacts: [], name: '', number: '' };
+  state = { name: '', number: '' };
   handleChange = event => {
     const { name, value } = event.currentTarget;
     this.setState({

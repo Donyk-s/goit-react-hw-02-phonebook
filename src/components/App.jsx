@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Form from './phoneBoock/Forma';
+import Form from './forma/Forma';
 import ContactList from './contacklisst/Contactlist';
 import { nanoid } from 'nanoid';
 import Filter from './filter/Filter';
@@ -36,14 +36,8 @@ export class App extends Component {
       return;
     }
 
-    const newContact = {
-      id: nanoid(),
-      name: data.name,
-      number: data.number,
-    };
-
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
+      contacts: [...prevState.contacts, data],
     }));
   };
   handleDeleteContact = id => {
