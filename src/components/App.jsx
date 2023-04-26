@@ -19,12 +19,6 @@ export class App extends Component {
     this.setState({ filter: value });
   };
 
-  checkContactExists = name => {
-    return this.state.contacts.some(
-      contact => contact.name.toLowerCase() === name.toLowerCase()
-    );
-  };
-
   formSubmitHandler = data => {
     const { contacts } = this.state;
     const isContactExists = contacts.some(
