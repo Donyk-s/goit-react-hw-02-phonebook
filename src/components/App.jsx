@@ -58,10 +58,7 @@ export class App extends Component {
           color: '#010101',
         }}
       >
-        <Form
-          onSubmit={this.formSubmitHandler}
-          contacts={this.state.contacts}
-        />
+        <Form onSubmit={this.formSubmitHandler} />
         <ContactList
           contacts={filteredContacts}
           onDeleteContact={this.handleDeleteContact}
