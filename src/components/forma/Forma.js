@@ -25,7 +25,7 @@ class Form extends Component {
     this.props.onSubmit(contact);
     this.reset();
   };
-  reset = () => this.setState({ contacts: [], name: '', number: '' });
+  reset = () => this.setState({ name: '', number: '' });
   render() {
     return (
       <div className={css.container}>
